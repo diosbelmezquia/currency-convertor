@@ -1,4 +1,5 @@
 <?php
+
 namespace BaffourAdu\CurrencyConvertor\Tests;
 
 use GuzzleHttp\Client;
@@ -14,9 +15,9 @@ class ConvertorTest extends TestCase
     public function it_returns_an_api_key()
     {
         $currencyConvertor = new Convertor('SomeApiKey');
-    
+
         $apiKey = $currencyConvertor->getApiKey();
-    
+
         $this->assertSame('SomeApiKey', $apiKey);
     }
 
@@ -28,7 +29,7 @@ class ConvertorTest extends TestCase
                                         ->to('GHS');
 
         $conversionCurrencies = $conversion->getCurrencies();
-    
+
         $this->assertSame('USD_GHS', $conversionCurrencies);
     }
 
@@ -37,12 +38,12 @@ class ConvertorTest extends TestCase
     {
         $currencyConvertor = new Convertor('SomeApiKey');
         $conversion = $currencyConvertor->amount(2.00);
- 
+
         $conversionAmount = $conversion->getAmount();
-     
+
         $this->assertSame(2.00, $conversionAmount);
     }
-        
+
     /** @test */
     public function it_returns_a_rate()
     {
@@ -57,7 +58,7 @@ class ConvertorTest extends TestCase
         $rate = $currencyConvertor->from('USD')
                                         ->to('GHS')
                                         ->getRate($client);
- 
+
         $this->assertSame('5.52', $rate);
     }
 
@@ -77,7 +78,7 @@ class ConvertorTest extends TestCase
                                         ->to('GHS')
                                         ->amount(3.00)
                                         ->convert($client);
- 
+
         $this->assertSame('16.56', $convertedAmount);
     }
 }

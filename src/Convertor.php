@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace BaffourAdu\CurrencyConvertor;
 
@@ -6,8 +6,8 @@ use GuzzleHttp\Client;
 
 class Convertor
 {
-    const BASE_URL =  'https://free.currencyconverterapi.com';
-    const RATE_ENDPOINT =  '/api/v6/convert';
+    const BASE_URL = 'https://free.currencyconverterapi.com';
+    const RATE_ENDPOINT = '/api/v6/convert';
 
     /** @string Holds API key  */
     protected $apiKey;
@@ -21,7 +21,7 @@ class Convertor
     protected $client;
 
     /**
-     * Sets API Key for API call
+     * Sets API Key for API call.
      *
      * @param string $apiKey
      */
@@ -31,7 +31,7 @@ class Convertor
     }
 
     /**
-     * Sets caurrecy from value
+     * Sets caurrecy from value.
      *
      * @param string $currencyFrom
      * @return $this
@@ -39,12 +39,12 @@ class Convertor
     public function from(string $currencyFrom)
     {
         $this->currencyFrom = $currencyFrom;
-        
+
         return $this;
     }
 
     /**
-     * Sets Currency to value
+     * Sets Currency to value.
      *
      * @param string $currencyTo
      * @return $this
@@ -57,7 +57,7 @@ class Convertor
     }
 
     /**
-     * Sets amount
+     * Sets amount.
      *
      * @param float $amount
      * @return $this
@@ -70,7 +70,7 @@ class Convertor
     }
 
     /**
-     * Returns a currency rate between currency from and to
+     * Returns a currency rate between currency from and to.
      *
      * @param client $client
      * @return string
@@ -81,8 +81,8 @@ class Convertor
 
         $currencies = $this->getCurrencies();
 
-        $queryParams = '?q='. $currencies .'&compact=ultra&apiKey='. $this->getApiKey();
-        $endpoint =  self::BASE_URL . self::RATE_ENDPOINT . $queryParams;
+        $queryParams = '?q='.$currencies.'&compact=ultra&apiKey='.$this->getApiKey();
+        $endpoint = self::BASE_URL.self::RATE_ENDPOINT.$queryParams;
 
         $response = $this->client->get($endpoint);
         $rate = json_decode($response->getBody()->getContents());
@@ -91,7 +91,7 @@ class Convertor
     }
 
     /**
-     * Returns a converted amount using getRate and amount specified
+     * Returns a converted amount using getRate and amount specified.
      *
      * @param client $client
      * @return string
@@ -104,7 +104,7 @@ class Convertor
     }
 
     /**
-     * Returns API Key
+     * Returns API Key.
      *
      * @return string $this->getApiKey
      */
@@ -114,22 +114,22 @@ class Convertor
     }
 
     /**
-     * Returns Amount
+     * Returns Amount.
      *
      * @return float $this->amount
-    */
+     */
     public function getAmount()
     {
         return $this->amount;
     }
 
     /**
-     * Returns Currency From and To concatenated
+     * Returns Currency From and To concatenated.
      *
      * @return float $this->amount
-    */
+     */
     public function getCurrencies()
     {
-        return $this->currencyFrom . '_' . $this->currencyTo;
+        return $this->currencyFrom.'_'.$this->currencyTo;
     }
 }
