@@ -6,8 +6,8 @@ use GuzzleHttp\Client;
 
 class Convertor
 {
-    const BASE_URL = 'https://free.currencyconverterapi.com';
-    const RATE_ENDPOINT = '/api/v6/convert';
+    const BASE_URL = 'https://free.currconv.com';
+    const RATE_ENDPOINT = '/api/v7/convert';
 
     /** @string Holds API key  */
     protected $apiKey;
